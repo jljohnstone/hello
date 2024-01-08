@@ -6,7 +6,7 @@ image: jasonjohnstonemedia/hello
 
 # Deploy to these servers.
 servers:
-  - 64.23.154.129
+  - 146.190.168.184
 
 # Credentials for your image host.
 registry:
