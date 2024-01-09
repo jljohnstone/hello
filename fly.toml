@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for johnstonemedia-hello on 2024-01-08T21:06:49-06:00
+# fly.toml app configuration file generated for johnstonemedia-hello on 2024-01-08T22:42:23-06:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -12,6 +12,7 @@ console_command = "/rails/bin/rails console"
 [[mounts]]
   source = "data"
   destination = "/data"
+  initial_size = "1GB"
   auto_extend_size_threshold = 0
 
 [http_service]
