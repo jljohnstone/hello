@@ -2,9 +2,12 @@
 <html>
   <head>
     <title>Hello</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#8e2731">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= tag :meta, name: :vapid_public_key, content: Rails.application.credentials.vapid.public_key %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -12,7 +15,21 @@
   </head>
 
   <body>
+    <%= content_tag :div,
+      class: "bg-yellow-300 p-3",
+      style: "display:none;",
+      id: "allow_notifications_alert",
+      role: :alert do %>
+        Turn on notifications to receive updates.
+        <%= button_tag "Allow", class: "bg-gray-600 rounded px-2 py-1 text-white", id: "allow_notifications" %>
+    <% end if user_signed_in? %>
     <main class="container mx-auto mt-28 px-5 flex">
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+      <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </main>
   </body>
