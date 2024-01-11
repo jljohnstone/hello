@@ -23,11 +23,14 @@
         Turn on notifications to receive updates.
         <%= button_tag "Allow", class: "bg-gray-600 rounded px-2 py-1 text-white", id: "allow_notifications" %>
     <% end if user_signed_in? %>
-    <div class="flex bg-slate-400 p-6">
+    <div class="flex bg-gray-200 p-6">
       <% if user_signed_in? %>
-        <%= link_to "Sign Out #{current_user.email}", destroy_user_session_path, data: { turbo_method: :delete }, class: "flex-auto underline" %>
+        <div>
+          <%= current_user.email %>
+        </div>
+        <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "flex-none bg-red-600 text-white uppercase font-bold text-xs px-2 py-1 rounded ml-1 " %>
       <% else %>
-        <%= link_to "Sign In", new_user_session_path, class: "flex-auto underline" %>
+        <%= link_to "Sign In", new_user_session_path, class: "flex-none bg-green-600 text-white uppercase font-bold text-xs px-2 py-1 rounded ml-1 " %>
       <% end %>
     </div>
     <% if notice.present? %>
