@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_10_060419) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_11_050552) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "registered_devices", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "endpoint"
+    t.string "p256dh"
+    t.string "auth"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_registered_devices_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,4 +39,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_060419) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "registered_devices", "users"
 end

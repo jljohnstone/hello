@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   get '/service-worker.js', to: 'service_workers/workers#index'
   get '/manifest.json', to: 'service_workers/manifests#index'
+  post '/notifications/subscribe', to: "service_workers/workers#create"
 
   resources :comments
 
