@@ -58,14 +58,14 @@ const allowAlert = document.querySelector("#allow_notifications_alert");
 if (typeof Notification !== "undefined") {
   if (Notification.permission === "denied") {
     allowAlert.style.display = "none";
-    console.log('notifications not supported')
+    console.log('notifications not supported');
   } else if (Notification.permission === "granted") {
-    console.log('notifications allowed')
+    console.log('notifications allowed');
     startServiceWorker();
     allowAlert.style.display = "none";
   } else {
-    console.log('notifiations pending')
     allowAlert.style.display = "block";
+    console.log('notifiations pending');
   }
 
   allowButton.addEventListener("click", async () => {

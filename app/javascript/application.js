@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-import "./service_worker"
+import "./service_worker.js"
